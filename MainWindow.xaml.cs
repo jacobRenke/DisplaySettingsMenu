@@ -23,7 +23,7 @@ namespace DisplaySettingsMenu
     public partial class MainWindow : Window
     {
         Loadout loadout1 = new Loadout();
-        Loadout loadout2 = new Loadout(brightness : 90);
+        Loadout loadout2 = new Loadout(brightness : 90, medium : true);
         Loadout loadout3 = new Loadout(resolution : "1280x720p");
         Loadout loadout4 = new Loadout();
 
@@ -31,22 +31,27 @@ namespace DisplaySettingsMenu
         {
             InitializeComponent();
             DataContext = loadout1;
-
-            
         }
 
         private void chooseLoadout1(object sender, RoutedEventArgs e)
         {
             DataContext = loadout1;
+            if (loadout2.Medium == true)
+            {
+                loadout2.Easy = false;
+                loadout2.Hard = false;
+            }
         }
 
         private void chooseLoadout2(object sender, RoutedEventArgs e)
         {
             DataContext = loadout2;
-            Debug.WriteLine(easy);
-            Debug.WriteLine(medium);
-            Debug.WriteLine(hard);
-        }
+            if (loadout2.Medium == true)
+            {
+                loadout2.Easy = false;
+                loadout2.Hard = false;
+            }
+         }
 
         private void chooseLoadout3(object sender, RoutedEventArgs e)
         {
@@ -134,11 +139,6 @@ namespace DisplaySettingsMenu
         {
             get { return hints; }
             set { hints = value; }
-        }
-
-        public static void updateRadioButtons()
-        {
-
         }
 
         //Constructor
